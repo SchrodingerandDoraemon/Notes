@@ -2,15 +2,10 @@
 Protected can be declared for Variables, methods, and constructor, it makes can be accessed only by the subclasses in other package or any class within the package. The protected access modifier cannot be applied to class and interfaces.\
 The public keyword is an access modifier used for classes, attributes, methods and constructors, making them accessible by any other class
 
-### how to customize our own immutable class
-1. Declare the class as final so it can’t be extended.
-2. Make all fields private so that direct access is not allowed.
-3. Don’t provide setter methods for variables.
-4. Make all mutable fields final so that its value can be assigned only once.
-5. Initialize all the fields via a constructor performing deep copy(with getter method).
-6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
-
 ### final in local variable
+final class: can not extent the class
+final variable: no change
+final method: no override
 
 ### Deep copy VS shallow copy
 shallow copy only copy the references of those objects
@@ -56,4 +51,57 @@ two point to memorize:
 default: in package
 protected: subclass in other package or within the package
 
-### 
+### immutable class
+An immutable class is simply a class whose instances cannot be modified. 
+e.g. String, Integer...
+
+### how to customize our own immutable class
+1. Declare the class as final so it can’t be extended.
+2. Make all fields private so that direct access is not allowed.
+3. Don’t provide setter methods for variables.
+4. Make all mutable fields final so that its value can be assigned only once.
+5. Initialize all the fields via a constructor performing deep copy(with getter method).
+6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+
+### Memory area (it is the logical way)
+1.Class(Method) Area: It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods.
+2.Heap
+3. Stack
+4. Program Counter Register
+5. Native Method Stack
+
+### Junit 4.0
+Unit is the testing framework, it is used for unit testing of Java code. JUnit = Java + Unit Testing  
+
+The process of testing individual functionality (known as a unit) of the application is called unit testing.
+
+### Maven
+Maven is a project management tool. It provides the developer a complete build lifecycle framework. On executing Maven commands, it will look for POM file in Maven; it will run the command on the resources described in the POM.
+
+POM
+POM (Project Object Model) is the fundamental unit of work. It is an XML file which holds the information about the project and configuration details used to build a project by Maven.
+
+Explain what is Maven artifact?
+Usually an artifact is a JAR file which gets arrayed to a Maven repository. One or more artifacts a maven build produces such as compiled JAR and a sources JAR.
+
+Explain what is Maven Repository? What are their types?
+
+A Maven repository is a location where all the project jars, library jars, plugins or any other particular project related artifacts are stored and can be easily used by Maven.
+
+### JDK/JRE/JVM
+the relation of subset
+JDK: JRE + dev tools
+JRE = JVM + java SE stardard librart
+JVM = stands for Java Virtual Machine, is a virtual machine that understands and runs java bytecodes.
+
+### Java hotspot
+What Is HotSpot? HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
+
+HotSpot has key feature called adaptive compiler that application code will be analyzed as it runs to detect performance bottlenecks, or "hot spots". HotSpot will then compile those hot spots for a boost in performance.
+
+### why java is not a pure object oriented language?
+because it supports primitive data type
+
+### autobox / unboxing
+Autoboxing is the automatic convert primitive types to their corresponding object wrapper classes.
+unboxing is the automatic convert object wrapper classes to their corresponding primitive types.

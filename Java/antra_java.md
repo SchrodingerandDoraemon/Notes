@@ -204,3 +204,139 @@ Serialization is usually used when there is need to send your data over network 
 Now the problem is your Network infrastructure and your Hard disk is hardware components that understand bits and bytes but not Java objects.
 
 Serialization is the translation of Java object’s values/states to bytes to send it over network or to save it.On the other hand, Deserialization is conversion of byte code to corresponding java objects.
+
+Serializable is marker interface.Marker interface in Java is interfaces with no field or methods or in simple word empty interface in java is called marker interface.
+
+#### Can you Serialize static variables?
+Answer :
+No,you can’t.As you know static variable are at class level not at object level and you serialize a object so you can’t serialize static variables.
+
+#### How can you avoid certain member variable of class to be serialized?
+You can mark that variable as either static or transient. Let’s see a simple example using transient variable.
+Transient variable is the variable whose value is not serialized during serialization. You will get default value for these variable when you deserialize it.
+
+#### What  if superclass is Serializable?  Does that mean child class is automatically Serializable?
+Answer : Yes. If you don’t want subclass to serializable then you need to implement writeObject() and readObject() method and need to throw NotSerializableException from this methods.
+
+### Java double lose precision
+Use BigDecimal.  -- > bigDecimal1.subtract(bigDecimal2)
+
+x^2 / x to the power of 2 is always accurate.
+
+### String[] args
+args stands for the name of String array. The parameter of main method can not be changed
+
+### There is no static local variable
+
+### volatile 
+The Java volatile keyword is used to mark a Java variable as "being stored in main memory". So any changes to the variable areacross threads.
+
+### Enum
+Enum is the lists of constants. 
+
+Q: Can Enum constants can be declared as static and final?
+A: Yes. Enum constants are public static and final and are accessible directly using enum name.
+
+Q: Can a constuctor be invoked using an Enum?
+A: Yes we can use the constuctor with the name of Enum.
+
+Q: Can we extend an Enum to add elements?
+A: No, we cannot extend Enum further in the Code. It is defined only with keyword Enum and filled with elements but these elements cannot be added further in the program using some alternative method.
+
+Q: Can we create object of Enum?
+A: No, it is not possible to create the object of Enum.
+
+Q: Can Enum implement an interface in Java?
+A: Yes, Enum can implement an interface in Java. Since enum is a type, similar to class and interface, it can implement an interface. This gives a lot of flexibility to use Enum as a specialized implementation in some cases. You can further see here an example of Enum implementing an interface in Java.
+
+### @Retention and Annotation
+@inherited is a type of meta-annotation used to annotate custom annotations so that the subclass can inherit those custom annotations. 
+
+By default, Java annotations are not shown in the documentation created using the Javadoc tool. To ensure that our custom annotations are shown in the documentation, we use @Documented annotation to annotate our custom annotations. @Documented is a meta-annotation (an annotation applied to other annotations)
+
+Q1. What Are Annotations? What Are Their Typical Use Cases?
+Annotations are metadata bound to elements of the source code of a program and have no effect on the operation of the code they operate.
+
+Their typical uses cases are:
+1. Information for the compiler – with annotations, the compiler can detect errors or suppress warnings
+2. Compile-time and deployment-time processing – software tools can process annotations and generate code, configuration files, etc.
+3. Runtime processing – annotations can be examined at runtime to customize the behavior of a program
+
+Q3. How Can You Create an Annotation?
+```
+public @interface SimpleAnnotation {
+    //whose body contains annotation type element
+    String value();
+
+    int[] types();
+}
+```
+
+Q6. Is There a Way to Limit the Elements in Which an Annotation Can Be Applied?
+```
+@Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PACKAGE })
+//pass multiple constants if we want to make it applicable in more contexts
+@Target({})
+//it cannot be used to annotate anything
+```
+
+Q7. What Are Meta-Annotations?
+Meta-Annotations? Are annotations that apply to other annotations.
+
+All annotations that aren't marked with @Target, or are marked with it but include ANNOTATION_TYPE constant are also meta-annotations
+'''
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface SimpleAnnotation {
+    // ...
+}
+'''
+
+Q9. How Can You Retrieve Annotations? How Does This Relate to Its Retention Policy?
+You can use the Reflection API or an annotation processor to retrieve annotations.
+
+The @Retention annotation and its RetentionPolicy parameter affect how you can retrieve them. There are three constants in RetentionPolicy enum:
+
+RetentionPolicy.SOURCE – makes the annotation to be discarded by the compiler but annotation processors can read them
+
+RetentionPolicy.CLASS – indicates that the annotation is added to the class file but not accessible through reflection
+
+RetentionPolicy.RUNTIME –Annotations are recorded in the class file by the compiler and retained by the JVM at runtime so that they can be read reflectively
+
+Here's an example code to create an annotation that can be read at runtime:
+```
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Description {
+    String value();
+}
+```
+Now, annotations can be retrieved through reflection:
+```
+Description description
+  = AnnotatedClass.class.getAnnotation(Description.class);
+System.out.println(description.value());
+```
+An annotation processor can work with RetentionPolicy.SOURCE
+
+RetentionPolicy.CLASS is usable when you're writing a Java bytecode parser.
+
+Q10. Will the Following Code Compile?
+```
+@Target({ ElementType.FIELD, ElementType.TYPE, ElementType.FIELD })
+public @interface TestAnnotation {
+    int[] value() default {};
+}
+```
+No. It's a compile-time error if the same enum constant appears more than once in an @Target annotation.
+
+Removing the duplicate constant will make the code to compile successfully:
+```
+@Target({ ElementType.FIELD, ElementType.TYPE})
+```
+
+Q11. Is It Possible to Extend Annotations?
+No. Annotations always extend java.lang.annotation.Annotation, as stated in the Java Language Specification.
+
+If we try to use the extends clause in an annotation declaration, we'll get a compilation error:
+
+
+

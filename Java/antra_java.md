@@ -70,7 +70,7 @@ e.g. String, Integer...
 6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
 
 ### Memory area (it is the logical way)
-1.Class(Method) Area: It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods.
+1.Class(Method) Area: It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods, Static block
 2.Heap
 3. Stack
 4. Program Counter Register
@@ -98,7 +98,7 @@ A Maven repository is a location where all the project jars, library jars, plugi
 the relation of subset
 JDK: JRE + dev tools
 JRE = JVM + java SE stardard librart
-JVM = stands for Java Virtual Machine, is a virtual machine that understands and runs java bytecodes.
+JVM = stands for Java Virtual Machine, is a virtual machine that understands and runs java bytecodes. JVM has the memory structure is the explicit difference from normal VM.
 
 ### Java hotspot
 What Is HotSpot? HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
@@ -121,7 +121,7 @@ unboxing is the automatic convert object wrapper classes to their corresponding 
 Class loaders are responsible for loading Java classes during runtime dynamically to the JVM.  Also, they are part of the JRE.
 ***bootstrap or primordial class loader*** loads the java.lang.ClassLoader itself. It's mainly responsible for loading JDK internal classes. This bootstrap class loader is part of the core JVM and is written in native code.
 
-The ***extension class loader*** is a child of the bootstrap class loader and takes care of loading the extensions of the standard core Java classes so that it's available to all applications running on the platform.
+The ***extension class loader*** is a child of the bootstrap class loader and are reponsible for loading the extensions of the standard core Java classes so that it's available to all applications running on the platform. It loads the jar package.
 
 ***application class loader***loads all the application level classes into the JVM. It loads files found in the classpath environment variableAlso, it's a child of Extensions classloader.
 
@@ -153,4 +153,54 @@ finalize() method of Object class is a method that the Garbage Collectoralways c
 ### Error 
 stackoverflow is error
 
-###
+### thread
+Thread share method area and heap, but each thread have their own stack, PC register and native method stack.
+
+Thread safe is about reference.
+
+### why to override hashcode() and equals()
+If we override the equals(), then we have to override hashcode(). Otherwise, it could cause some problems for hash based data structures. For example, the same object value would have different hash value, then they woule both be added to the hashmap, then the keys would be duplicate. The Reverse is not true, it would cause any troubles, but it's the convention and best pratice to override them both. I will override them both.
+
+### Hashset
+Hashset internally use HashMap. It takes the keys as its elements, but set the values to be null always.
+
+### Integer
+Integer cache values from –128 to +127. 
+
+### == equal equal sign
+
+### Vector
+Vector is also a dynamic array. Vector is synchronized. vector increments 100% of the current array size if the number of elements exceeds its capacity. Arraylist is preferred than vector.
+
+### comparator / comparable
+We create a create a Comparator object to use comparetor, override comare() in comparator interface. we use comparable by implement a comparable interface, and override the compareTo() 
+
+The Comparable interface is a good choice to use for defining the default ordering, or in other words, if it's the main way of comparing objects.
+
+### So why use a Comparator if we already have Comparable?
+1. Sometimes we can't modify the source code of the class whose objects we want to sort.
+2. Using Comparators allows us to avoid adding additional code to our domain classes
+3. We can define multiple different comparison strategies, which isn't possible when using Comparable
+
+### Static block
+A static block run once for each time a class is loaded into memory. It's stored in method area.
+
+### Throws vs Throw
+Throws clause is used to declare an exception in the method signature, which means it works similar to the try-catch block. The exception of throws in superclass have to be the superclass of exception of throws in subclass。
+
+Throw keyword is used to throw an exception explicitly in the method body.
+
+### Serializable
+Serialization is the process of turning an object in memory into a stream of bytes so you can do stuff like store it on disk or send it over the network.
+
+Deserialization is the reverse process: turning a stream of bytes into an object in memory.
+
+implement Serializable interface ---> FileOutputStream ---> ObjectOutputStream
+
+#### What is need of Serialization?
+Answer:
+Serialization is usually used when there is need to send your data over network or to store in files. By data I mean objects and not text.
+
+Now the problem is your Network infrastructure and your Hard disk is hardware components that understand bits and bytes but not Java objects.
+
+Serialization is the translation of Java object’s values/states to bytes to send it over network or to save it.On the other hand, Deserialization is conversion of byte code to corresponding java objects.

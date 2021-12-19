@@ -8,13 +8,16 @@ final variable: no change
 final method: no override
 
 ### Deep copy VS shallow copy
-shallow copy only copy the references of those objects
-Deep copy means a new object will be created, and all the values of original object will be copied to the new object.
-
+shallow copy only copy the references of those objects. One object, two reference.
+Deep copy means a new object will be created, and all the values of original object will be copied to the new object. Two object, two reference. We have to override the clone() method to use deep copy.
+ 
 ### ConcurrentHashMap
 ConcurrentHashMap class is thread-safe. It works by dividing complete hashtable array into segments or portions and allowing parallel access to those segments. The locking is at a much finer granularity at a hashmap bucket level(all methods are synchronized on Hashtable instances using the synchronized keyword). ConcurrentHashMap does not allow NULL values, so the key can not be null in ConcurrentHashMap.
 
 If a thread-safe highly-concurrent implementation is desired, then it is recommended to use ConcurrentHashMap in place of Hashtable.
+
+### Synchronized HashMap
+It locks the whole map.performance of ConcurrentHashMap is relatively better than the Synchronized Map. Synchronized HashMap allows inserting null as a key. ConcuurentHashMap doesn’t allow inserting null as a key or value.
 
 ### referency data type
 Reference datatypes in java are those which contains reference/address of dynamically created objects. These are not predefined like primitive data types.
@@ -50,6 +53,9 @@ two point to memorize:
 ### access modifer is used for encapsulation
 default: in package
 protected: subclass in other package or within the package
+
+### Final
+change the final reference is a checked exception.
 
 ### immutable class
 An immutable class is simply a class whose instances cannot be modified. 
@@ -110,4 +116,41 @@ unboxing is the automatic convert object wrapper classes to their corresponding 
 1. Interface can do multi-inheritance.
 2. Final Variables: Variables declared in interface are by default final. An abstract class may contain non-final variables.
 3. Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
-4. it is mandatory to implement all the methods
+
+### class loader
+Class loaders are responsible for loading Java classes during runtime dynamically to the JVM.  Also, they are part of the JRE.
+***bootstrap or primordial class loader*** loads the java.lang.ClassLoader itself. It's mainly responsible for loading JDK internal classes. This bootstrap class loader is part of the core JVM and is written in native code.
+
+The ***extension class loader*** is a child of the bootstrap class loader and takes care of loading the extensions of the standard core Java classes so that it's available to all applications running on the platform.
+
+***application class loader***loads all the application level classes into the JVM. It loads files found in the classpath environment variableAlso, it's a child of Extensions classloader.
+
+![image](https://user-images.githubusercontent.com/35554521/146659820-85a60803-d9f5-4534-8e3e-1fd117a3fb20.png)
+
+### Where is constant string pool
+in heap memory. Constant string pool stores literal string values.
+
+### Method area
+In the method area, all class level information like class name, immediate parent class name, methods and variables information etc. are stored, including static variables.
+
+### static
+static method and static variable are in method area. method area are in the metaspce.
+
+### reference data type consists of reference and object
+
+### throw 
+two purpose:
+1. tell the programmar 
+2. used for custom exception
+
+### final, Finally, finally.
+The final keyword can be used with class method and variable. A final class cannot be inherited, a final method cannot be overridden and a final variable cannot be reassigned.
+
+The finally,used in try-catch, whatever exception happened or not, the finally block will excuted. Using a finally block allows you to run any cleanup-type statements to realse to resource. System exit can interrupt the finally
+
+finalize() method of Object class is a method that the Garbage Collectoralways calls just before the destroying the object which is eligible for Garbage Collection, so as to perform clean-up activity. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation. Remember it is not a reserved keyword. Once the finalize method completes immediately Garbage Collector destroy that object.
+
+### Error 
+stackoverflow is error
+
+###

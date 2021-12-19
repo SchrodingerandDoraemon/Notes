@@ -105,3 +105,9 @@ because it supports primitive data type
 ### autobox / unboxing
 Autoboxing is the automatic convert primitive types to their corresponding object wrapper classes.
 unboxing is the automatic convert object wrapper classes to their corresponding primitive types.
+
+### Interface vs Abstract class 
+1. Interface can do multi-inheritance.
+2. Final Variables: Variables declared in interface are by default final. An abstract class may contain non-final variables.
+3. Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
+4. it is mandatory to implement all the methods

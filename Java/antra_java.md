@@ -338,5 +338,33 @@ No. Annotations always extend java.lang.annotation.Annotation, as stated in the 
 
 If we try to use the extends clause in an annotation declaration, we'll get a compilation error:
 
+Q12. Can one class be provided with two annotation
+Yes.
 
+### Generics
+Generics mean parameterized types. The idea is to allow type (Integer, String, … etc, and user-defined types) to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
+
+Q2. How Generics works in Java ? What is type erasure ?\
+This is one of the better interview question in Generics. Generics is implemented using Type erasure, the compiler erases all type related information during compile time and no type related information is available during runtime. for example List<String> is represented by only List at runtime. 
+
+Q3. What Are Some Advantages of Using Generic Types?
+One advantage of using generics is avoiding casts and provide type safety(compile type check), the other advantage is to avoid code duplication. Without generics, we have to copy and paste the same code but for different types..  This is particularly useful when working with collections.
+
+Q9. What Is a Wildcard Type?
+A wildcard type represents an unknown type.
+ 
+### Exception
+Larger scope exception should put in the later place.
+ 
+Custom unchecked exception extends RuntimeException.(RuntimeException is subclass of Exception) 
+
+Custom checked exception extends exception. 
+ 
+All excepiton are serializable, This is because the root class for all exceptions, Throwable implements the Serializable interface. All exceptions by default are serializable and that's a language design decision because the authors wanted ***exceptions to be capable of being sent across the wire without any special configuration***.
+ 
+### I/O
+The java.io package contains nearly every class you might ever need to perform input and output (I/O) in Java.
+ 
+### mkdir()
+mkdir() method is a part of File class. The mkdir() function is used to create a new directory denoted by the abstract pathname. 
 

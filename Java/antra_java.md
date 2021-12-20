@@ -2,6 +2,12 @@
 Protected can be declared for Variables, methods, and constructor, it makes can be accessed only by the subclasses in other package or any class within the package. The protected access modifier cannot be applied to class and interfaces.\
 The public keyword is an access modifier used for classes, attributes, methods and constructors, making them accessible by any other class
 
+protected and private can not be used with class, which means they can only be used to method and variable.
+
+class can only be default class or public class
+
+Interface are by default public.
+
 ### final in local variable
 final class: can not extent the class
 final variable: no change
@@ -444,7 +450,7 @@ if(optional1.isPresent()){
  
 tenary operation --->used with return OR assignment 
 
-
+JavaP:The javap tool is used to get the information of any class or interface. The javap command (also known as the Java Disassembler) covert bytecode to java code only with structure
 
 
 

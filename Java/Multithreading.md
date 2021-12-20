@@ -99,5 +99,31 @@ cons:
 |hard drive| OS will assign memory for each process |
 |classloader load it to JVM so it will become process| |
 
+### message queue implement comsumer and producer
+Synchronized keyword mark the following block to be atomic, 
+
+private static Object monitor_lock = new Object(); to be the lock
+
+Synchronized method works same as sychronized(lock)
+
+lock is a object monitor 
+
+main memory / thread memory
+
+ yield() provides a mechanism to inform the “scheduler” that the current thread is willing to relinquish its current use of processor but it'd like to be scheduled back soon as possible.
+
+The “scheduler” is free to adhere or ignore this information and in fact, has varying behavior depending upon the operating system.
 
 
+### AtomicInteger
+problem with volatile: override the other result, use synchronized(reduce the performance), we could use atomicInteger instead, 
+
+The primary use of AtomicInteger is when you are in a multithreaded context and you need to perform thread safe operations on an integer without using synchronized. 
+
+1. step one: In the RAM, instantiate an AtomicInteger with value equals to five.
+2. Step two: copy the value of the AtomicInteger from Ram to both the threads.
+3. Step three: compare and swap then write back to the RAM
+
+CAS concept: compare and swap
+
+concurrent parkage

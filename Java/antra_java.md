@@ -216,6 +216,10 @@ Deserialization is the reverse process: turning a stream of bytes into an object
 
 implement Serializable interface ---> FileOutputStream ---> ObjectOutputStream
 
+InputStream and OutputStream are two parent classes of byteStream
+
+Reader and Writer are two parents classes of character stream
+
 #### What is need of Serialization?
 Answer:
 Serialization is usually used when there is need to send your data over network or to store in files. By data I mean objects and not text.
@@ -441,6 +445,21 @@ if(optional1.isPresent()){
    sout("it is empty")
  }
 ```
+### S.O.L.I.D. Principles
+Single responsibility principle: 
+A class should only have a single responsibility, that is, only changes to one part of the software's specification should be able to affect the specification of the class.
+
+Open–closed principle"
+"Software entities ... should be open for extension, but closed for modification."
+
+Liskov substitution principle:
+"Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program." See also design by contract.
+
+Interface segregation principle:
+"Many client-specific interfaces are better than one general-purpose interface."
+
+Dependency inversion principle:
+One should "depend upon abstractions, [not] concretions."
 
 ### Other Java
  .class is not compulsory to be the same as .java

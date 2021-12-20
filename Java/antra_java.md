@@ -106,6 +106,28 @@ JDK: JRE + dev tools
 JRE = JVM + java SE stardard librart
 JVM = stands for Java Virtual Machine, is a virtual machine that understands and runs java bytecodes. JVM has the memory structure is the explicit difference from normal VM.
 
+### Garabage collector
+#### How does it internally works?
+Minor GC is fot the young generation,counter to count the life cycle, one the life cycle pass the max tenuring threshold, the object will be move the old generations. Major GC for the old generation.
+
+#### Serial collector:
+a basic collector runs in sinle thread.
+
+#### concurent collector(CMS):
+A thread that performs GC along tiwth application execution as the application runs. it doesn't wait for the old geration to be full to begin the major collections. It stops the world only during mark/remark
+
+#### parallel collector
+This is the default GC for Java 8
+Use multiple CPUs to perform GC, mutlipple threads doing mark/sweep etc, it doen't kick in untill heap is full or near-full, stop the world when it runs. So it's not concurrent
+
+#### when to use which?(hardware capability + Application requirements) 
+use CMS when: there is more memory, CPUS. Application require responsive and short lantency.
+Use parallel GC when: thre is less memory, CPUs,  Application require high throughput and withstand pause.
+
+Throughput is the amount of a product or service that a company can produce and deliver to a client within a specified period of time. 
+
+#### ZGC is a concurrent GC 
+
 ### Java hotspot
 What Is HotSpot? HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
 
@@ -364,6 +386,16 @@ If we try to use the extends clause in an annotation declaration, we'll get a co
 Q12. Can one class be provided with two annotation
 Yes.
 
+### Class class and Reflection
+Class class is used to describe the meta information inside a class. When a class is loaded from ClassLoader, one(and only one per classloader) Class object will be created.
+
+Every class or object can call getClass() method or .class field to get the instance of the Class class.
+
+Reflection gives us information about the class to which an object belongs and also the methods of that class which can be executed by using the object. Through reflection we can invoke methods at runtime irrespective of the access specifier used with them.
+
+Combine with annotations, using reflection api can achieve lots of framework jobs. 
+
+
 ### Generics
 Generics mean parameterized types. The idea is to allow type to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
 
@@ -420,6 +452,10 @@ Function: map a value to different value
 predicate: test a condition
  
 ### Stream API
+Stream is a sequence of elements supporting sequential and parallel aggregate operations.
+
+To perform a computation, stream operations are composed into a stream pipeline. A stream pipeline consists of a source (which might be an array, a collection, a generator function, an I/O channel, etc), zero or more intermediate operations (which transform a stream into another stream, such as filter(Predicate)), and a terminal operation (which produces a result or side-effect, such as count() or forEach(Consumer)). Streams are lazy; computation on the source data is only performed when the terminal operation is initiated, and source elements are consumed only as needed.
+
 #### What is the parallel Stream? How can you get a parallel stream from a List? (answer) 
 A parallel stream can parallel execute stream processing tasks. For example, if you have a parallel stream of 1 million orders and you are looking for orders worth more than 1 million, then you can use a filter to do that.
 
@@ -461,6 +497,9 @@ Interface segregation principle:
 Dependency inversion principle:
 One should "depend upon abstractions, [not] concretions."
 
+### JVM monitor 
+Java Mission Control is the recommended one by Oracle. 
+
 ### Other Java
  .class is not compulsory to be the same as .java
  ```
@@ -481,7 +520,16 @@ s1.toUpperCase()
  
 TDD ---> Test drive developmen
  
-
+### A singleton class means only one object can be created from the class.
  
+### Factory is a creational design pattern, i.e., related to object creation.
+
+Factory pattern hides the creation process of objects from being exposed to the caller. Caller of Factory doesn't know how the object gets created. This will make the code loosely coupled.
+ 
+### Builder pattern is used to simplify the process of building a complex object.
+#### Differences between factory and builder
+Factory is to hide the creation of the object from the client. Client doesn't know how the objects are created. Just ask for it and use it.
+
+Builder is to simplify the creation of the obejct if there are too many attributes to set. Client knows exactly what to set.
 
 

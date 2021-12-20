@@ -118,11 +118,33 @@ The “scheduler” is free to adhere or ignore this information and in fact, ha
 ### AtomicInteger
 problem with volatile: override the other result, use synchronized(reduce the performance), we could use atomicInteger instead, 
 
-The primary use of AtomicInteger is when you are in a multithreaded context and you need to perform thread safe operations on an integer without using synchronized. 
+The primary use of AtomicInteger is when you are in a multithreaded context and you need to perform thread safe operations on an integer without using synchronized. Java classes like AtomicInteger or AtomicBoolean internally use CAS operations to support multi-threading.
 
 1. step one: In the RAM, instantiate an AtomicInteger with value equals to five.
 2. Step two: copy the value of the AtomicInteger from Ram to both the threads.
 3. Step three: compare and swap then write back to the RAM
+
+#### CAS
+In a CAS operation, the processor provides a separate instruction that can update the value of a register only if the provided value is equal to the current value.
+
+CAS operation can be used as an alternate to synchronization.
+
+Let say thread T1 can update a value by passing its current value and the new value to be updated to the CAS operation.
+
+In case another thread T2 has updated the current value of previous thread, the previous thread T1's current value is not equal to the current value of T2.
+
+Hence the update operation fails.
+
+In this case, thread T1 will read the current value again and try to update it.
+
+This is an example of optimistic locking.
+
+### ABA problem
+The AtomicStampedReference is designed to solve the A-B-A problem. The A-B-A problem is when a reference is changed from pointing to A, then to B and then back to A.
+
+When using compare-and-swap operations to change a reference atomically, and making sure that only one thread can change the reference from an old reference to a new, detecting the A-B-A situation is impossible.
+
+use atomicStamp to check the verison.
 
 CAS concept: compare and swap
 

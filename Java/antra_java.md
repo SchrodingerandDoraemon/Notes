@@ -88,7 +88,7 @@ Unit is the testing framework, it is used for unit testing of Java code. JUnit =
 The process of testing individual functionality (known as a unit) of the application is called unit testing.
 
 ### Maven
-Maven is a project management tool. It provides the developer a complete build lifecycle framework. On executing Maven commands, it will look for POM file in Maven; it will run the command on the resources described in the POM.
+Maven is a dependency management system. It provides the developer a complete build lifecycle framework. On executing Maven commands, it will look for POM file in Maven; it will run the command on the resources described in the POM.
 
 POM
 POM (Project Object Model) is the fundamental unit of work. It is an XML file which holds the information about the project and configuration details used to build a project by Maven.

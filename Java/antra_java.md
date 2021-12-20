@@ -151,6 +151,8 @@ In the method area, all class level information like class name, immediate paren
 ### static
 static method and static variable are in method area. method area are in the metaspce.
 
+static method have to use static variable
+
 ### reference data type consists of reference and object
 
 ### throw 
@@ -452,5 +454,15 @@ tenary operation --->used with return OR assignment
 
 JavaP:The javap tool is used to get the information of any class or interface. The javap command (also known as the Java Disassembler) covert bytecode to java code only with structure
 
+POJO class: no extends, no implement, no annotations.
+ 
+s.cancat(s2) = s1+s2
+ 
+s1.toUpperCase()
+ 
+TDD ---> Test drive developmen
+ 
+
+ 
 
 

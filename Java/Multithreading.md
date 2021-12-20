@@ -12,6 +12,11 @@ A thread pool manages the collection of Runnable threads and worker threads exec
 
 java.util.concurrent.Executors provide implementation of java.util.concurrent.Executor interface to create the thread pool in java. Thread Pool Example program shows how to create and use Thread Pool in java.
 
+Three types of Thread pool:
+1. single thread pool
+2. Fixed thread pool
+3. Cached THread pool
+
 #### Q3: During a thread's lifetime, what states can it have?
 here are five states a thread can have: New, Runnable, Running, time_waiting/Blocked and Terminated.
 

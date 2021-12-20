@@ -27,7 +27,9 @@ A race condition occurs when multiple concurrent threads race to be the first to
 Synchronization forces threads to run one at a time to prevent a race condition or multiple threads trying to perform the same task.
 
 #### Q6: synchronized block?
-A synchronized block allows you to designate a particular portion of a method as synchronized. That is, only a single thread will be allowed to run until it completes
+A synchronized block allows you to designate a particular portion of a method as synchronized. That is, only a single thread will be allowed to run until it completes.
+
+A lock machanism to make code to be executed just in one thread at the same time.
 
 #### Q7. What is context switching
 Context switching is where the current state of a thread or process is stored so the execution of that thread can be resumed at a later time. This enables a single CPU to manage multiple threads or processes.
@@ -74,6 +76,13 @@ You can achieve thread safety through several techniques, including synchronizat
 
 #### Q21: What is the difference between synchronous and asynchronous programming?
 Synchronous programming is when a single thread is assigned a single task. Asynchronous programming is when a single task is shared between multiple threads.
+
+### Atomic 
+Atomic operations are performed in a single unit of task without interference from other operations. '
+
+AtomicInteger
+
+### java.lang.ThreadLocal class provides thread-local variables where each thread accesses its own, independent copy of the variable.
 
 ### How to create a thread
 runnable interface, extends Thread, Thread pool, callable(pros, can throw exceptions, can return generics)

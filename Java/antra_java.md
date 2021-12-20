@@ -108,6 +108,15 @@ HotSpot has key feature called adaptive compiler that application code will be a
 ### why java is not a pure object oriented language?
 because it supports primitive data type
 
+### casting
+implicit casting: coverting without losing data. e.g. int ---> double
+
+explicit casting: Coverting with losing data. 
+
+Down casting: form superclass to subclass  --- explicitly
+
+Up casting: from subclass to a superclass ---> implicity
+
 ### autobox / unboxing
 Autoboxing is the automatic convert primitive types to their corresponding object wrapper classes.
 unboxing is the automatic convert object wrapper classes to their corresponding primitive types.
@@ -163,6 +172,8 @@ If we override the equals(), then we have to override hashcode(). Otherwise, it 
 
 ### Hashset
 Hashset internally use HashMap. It takes the keys as its elements, but set the values to be null always.
+
+Sets.intersection(a,b) / Sets.Union(a, b) / set1.removeAll(set2)
 
 ### Integer
 Integer cache values from –128 to +127. 
@@ -342,13 +353,15 @@ Q12. Can one class be provided with two annotation
 Yes.
 
 ### Generics
-Generics mean parameterized types. The idea is to allow type (Integer, String, … etc, and user-defined types) to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
+Generics mean parameterized types. The idea is to allow type to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
 
 Q2. How Generics works in Java ? What is type erasure ?\
 This is one of the better interview question in Generics. Generics is implemented using Type erasure, the compiler erases all type related information during compile time and no type related information is available during runtime. for example List<String> is represented by only List at runtime. 
 
 Q3. What Are Some Advantages of Using Generic Types?
-One advantage of using generics is avoiding casts and provide type safety(compile type check), the other advantage is to avoid code duplication. Without generics, we have to copy and paste the same code but for different types..  This is particularly useful when working with collections.
+One advantage of using generics is avoiding casts and provide type safety(compile type check), because we change the runtime exception to be a checked exception.
+ 
+the other advantage is to avoid code duplication. Without generics, we have to copy and paste the same code but for different types. 
 
 Q9. What Is a Wildcard Type?
 A wildcard type represents an unknown type.
@@ -377,8 +390,22 @@ class::methodname
 object::methodname
 ```
  
+### Imperative programming vs Declarative programming
+Imperative Programming: In this, programs specify how it is to be done. 
+Declarative Programming: In this, programs specify what is to be done. 
+
 ### Functional interface (means it represent functionality)
 have single abstract method. 
+ 
+It is not madatory but recommended to use @FunctionalInterface annotation to avoid the addition of extra methods accidentally.
+ 
+consumer: consume a value and return a void
+ 
+Supplier: supply a value
+ 
+Function: map a value to different value
+ 
+predicate: test a condition
  
 ### Stream API
 #### What is the parallel Stream? How can you get a parallel stream from a List? (answer) 
@@ -398,7 +425,7 @@ When we say Stream is lazy, we mean that most of the methods are defined on Java
 
 They only work when you call a terminal method on the Stream and finish as soon as they find the data they are looking for rather than scanning through the whole set of data.
  
-### Optional
+ ### Optional
 Use optional to avoid NullPointerException.
 ```
 Optional<object> optional1 = Optional.empty()
@@ -407,7 +434,17 @@ if(optional1.isPresent()){
  }
 ```
 
+### Other Java
+ .class is not compulsory to be the same as .java
+ ```
+ /*
+ multiple comment 
+ */
+ ```
  
+tenary operation --->used with return OR assignment 
+
+
 
 
 

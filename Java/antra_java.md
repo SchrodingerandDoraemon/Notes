@@ -362,9 +362,52 @@ Custom checked exception extends exception.
  
 All excepiton are serializable, This is because the root class for all exceptions, Throwable implements the Serializable interface. All exceptions by default are serializable and that's a language design decision because the authors wanted ***exceptions to be capable of being sent across the wire without any special configuration***.
  
-### I/O
-The java.io package contains nearly every class you might ever need to perform input and output (I/O) in Java.
- 
 ### mkdir()
 mkdir() method is a part of File class. The mkdir() function is used to create a new directory denoted by the abstract pathname. 
+ 
+### lambda 
+contain parameter and method body, and can return any type.
+ 
+### Method reference
+Method reference is used refer method of functional interface. It is nothing but compact way of lambda expression. You can simply replace lambda expression with method reference.
+```
+Syntax:
+class::methodname
+ 
+object::methodname
+```
+ 
+### Functional interface (means it represent functionality)
+have single abstract method. 
+ 
+### Stream API
+#### What is the parallel Stream? How can you get a parallel stream from a List? (answer) 
+A parallel stream can parallel execute stream processing tasks. For example, if you have a parallel stream of 1 million orders and you are looking for orders worth more than 1 million, then you can use a filter to do that.
+
+Unlike sequential Stream, the parallel Stream can launch multiple threads to search for those orders on the different parts of the Stream and then combine the result.
+
+#### What is the difference between intermediate and terminal operations on Stream? (answer)
+The intermediate Stream operation returns another Stream, intermediate stream have to combined with terminal operation.
+ 
+On the other hand, the terminal operation produces a result.
+
+Once a terminal method like forEach() or collect() is called, you cannot call any other method of Stream or reuse the Stream.
+ 
+#### What do you mean by saying Stream is lazy? (answer)
+When we say Stream is lazy, we mean that most of the methods are defined on Java .util.stream.Stream class is lazy i.e. they will not work by just including them on the Stream pipeline.
+
+They only work when you call a terminal method on the Stream and finish as soon as they find the data they are looking for rather than scanning through the whole set of data.
+ 
+### Optional
+Use optional to avoid NullPointerException.
+```
+Optional<object> optional1 = Optional.empty()
+if(optional1.isPresent()){
+   sout("it is empty")
+ }
+```
+
+ 
+
+
 

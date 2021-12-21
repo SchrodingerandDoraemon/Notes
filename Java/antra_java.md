@@ -1,5 +1,6 @@
 ### Protected vs public
-Protected can be declared for Variables, methods, and constructor, it makes can be accessed only by the subclasses in other package or any class within the package. The protected access modifier cannot be applied to class and interfaces.\
+Protected can be declared for Variables, methods, and constructor, it makes can be accessed only by the subclasses in other package or any class within the package. The protected access modifier cannot be applied to class and interfaces.
+
 The public keyword is an access modifier used for classes, attributes, methods and constructors, making them accessible by any other class
 
 protected and private can not be used with class, which means they can only be used to method and variable.
@@ -34,7 +35,7 @@ Following are the reference types in Java.
 
 2. array types − This reference type points to an array.
 
-4. interface types − This reference type points to an object of a class which implements an interface.
+3. interface types − This reference type points to an object of a class which implements an interface.
 
 Once we create a variable of these types (i.e. when we create an array or object, class or interface).
 
@@ -57,11 +58,8 @@ two point to memorize:
 2. default statement is used when none of the cases is true.
 
 ### access modifer is used for encapsulation
-default: in package
-protected: subclass in other package or within the package
 
-### Final
-change the final reference is a checked exception.
+### change the final reference is a checked exception.
 
 ### immutable class
 An immutable class is simply a class whose instances cannot be modified. 
@@ -69,14 +67,13 @@ e.g. String, Integer...
 
 ### how to customize our own immutable class
 1. Declare the class as final so it can’t be extended.
-2. Make all fields private so that direct access is not allowed.
+2. Make all fields private and final so that direct access is not allowed.
 3. Don’t provide setter methods for variables.
-4. Make all mutable fields final so that its value can be assigned only once.
-5. Initialize all the fields via a constructor performing deep copy(with getter method).
-6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+4. Initialize all the fields via a constructor performing deep copy
+5. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
 
 ### Memory area (it is the logical way)
-1.Class(Method) Area: It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods, Static block
+1.Method Area: It stores class level data of every class such as the runtime constant pool, field and method data, the code for methods, Static block. Also called class area
 2.Heap
 3. Stack
 4. Program Counter Register
@@ -129,12 +126,9 @@ Throughput is the amount of a product or service that a company can produce and 
 #### ZGC is a concurrent GC 
 
 ### Java hotspot
-What Is HotSpot? HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
+HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
 
 HotSpot has key feature called adaptive compiler that application code will be analyzed as it runs to detect performance bottlenecks, or "hot spots". HotSpot will then compile those hot spots for a boost in performance.
-
-### why java is not a pure object oriented language?
-because it supports primitive data type
 
 ### casting
 implicit casting: coverting without losing data. e.g. int ---> double
@@ -149,7 +143,7 @@ Up casting: from subclass to a superclass ---> implicity
 Autoboxing is the automatic convert primitive types to their corresponding object wrapper classes.
 unboxing is the automatic convert object wrapper classes to their corresponding primitive types.
 
-### Interface vs Abstract class 
+### Interface vs Abstract class (multi-inheritance+ final+ access modifier)
 1. Interface can do multi-inheritance.
 2. Final Variables: Variables declared in interface are by default final. An abstract class may contain non-final variables.
 3. Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
@@ -175,8 +169,6 @@ static method and static variable are in method area. method area are in the met
 
 static method have to use static variable
 
-### reference data type consists of reference and object
-
 ### throw 
 two purpose:
 1. tell the programmar 
@@ -187,13 +179,13 @@ The final keyword can be used with class method and variable. A final class cann
 
 The finally,used in try-catch, whatever exception happened or not, the finally block will excuted. Using a finally block allows you to run any cleanup-type statements to realse to resource. System exit can interrupt the finally
 
-finalize() method of Object class is a method that the Garbage Collectoralways calls just before the destroying the object which is eligible for Garbage Collection, so as to perform clean-up activity. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation. Remember it is not a reserved keyword. Once the finalize method completes immediately Garbage Collector destroy that object.
+finalize() method is used to perform clean-up activity before the GC. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation. Remember it is not a reserved keyword. Once the finalize method completes immediately Garbage Collector destroy that object.
 
 ### Error 
 stackoverflow is error
 
 ### thread
-Thread share method area and heap, but each thread have their own stack, PC register and native method stack.
+Thread share method area and heap, but each thread have their own stack
 
 Thread safe is about reference.
 
@@ -214,9 +206,11 @@ Integer cache values from –128 to +127.
 Vector is also a dynamic array. Vector is synchronized. vector increments 100% of the current array size if the number of elements exceeds its capacity. Arraylist is preferred than vector.
 
 ### comparator / comparable
-We create a create a Comparator object to use comparetor, override comare() in comparator interface. we use comparable by implement a comparable interface, and override the compareTo() 
+1.	Different implementation. Comparable is used to defined the natural ordering of the object. It’s the object class implement the comparable class and override the compareTo() method. 
+2.	You can only have one compareTo()(comaparable) implementation for an object, while you can define multiple Comparator for comparing objects on different parameters. THEREFORE, The Comparator is usually used to define any alternative ordering for an object.
 
-The Comparable interface is a good choice to use for defining the default ordering, or in other words, if it's the main way of comparing objects.
+It's also a best practice to declare Comparator as nested static classes in Java, because they are closely associated with objects they compare.
+compareTo() and compare() method in Java must be consistent with equals() implementation i.e. if two methods are equal by equals() method then compareTo() and compare() must return zero.
 
 ### So why use a Comparator if we already have Comparable?
 1. Sometimes we can't modify the source code of the class whose objects we want to sort.
@@ -232,7 +226,7 @@ Throws clause is used to declare an exception in the method signature, which mea
 Throw keyword is used to throw an exception explicitly in the method body.
 
 ### Serializable
-Serialization is the process of turning an object in memory into a stream of bytes so you can do stuff like store it on disk or send it over the network.
+Serialization is the process of turning ***an object in memory*** into a ***stream of bytes*** so you can do stuff like store it on disk or send it over the network.
 
 Deserialization is the reverse process: turning a stream of bytes into an object in memory.
 
@@ -247,8 +241,6 @@ Answer:
 Serialization is usually used when there is need to send your data over network or to store in files. By data I mean objects and not text.
 
 Now the problem is your Network infrastructure and your Hard disk is hardware components that understand bits and bytes but not Java objects.
-
-Serialization is the translation of Java object’s values/states to bytes to send it over network or to save it.On the other hand, Deserialization is conversion of byte code to corresponding java objects.
 
 Serializable is marker interface.Marker interface in Java is interfaces with no field or methods or in simple word empty interface in java is called marker interface.
 
@@ -274,7 +266,7 @@ args stands for the name of String array. The parameter of main method can not b
 ### There is no static local variable
 
 ### volatile 
-The Java volatile keyword is used to mark a Java variable as "being stored in main memory". So any changes to the variable areacross threads.
+The Java volatile keyword is used to mark a Java variable as "being stored in main memory". So any changes to the variable are across threads.
 
 ### Enum
 Enum is the lists of constants. 
@@ -301,7 +293,7 @@ annotation helps to change the runtime exception to be compiler time exception
 By default, Java annotations are not shown in the documentation created using the Javadoc tool. To ensure that our custom annotations are shown in the documentation, we use @Documented annotation to annotate our custom annotations. @Documented is a meta-annotation (an annotation applied to other annotations)
 
 Q1. What Are Annotations? What Are Their Typical Use Cases?
-Annotations are metadata bound to elements of the source code of a program and have no effect on the operation of the code they operate.
+Annotations are metadata bound to java class, method, interface or variables and have no effect on the operation of the code they operate.
 
 Their typical uses cases are:
 1. Information for the compiler – with annotations, the compiler can detect errors or suppress warnings
@@ -344,7 +336,7 @@ The @Retention annotation and its RetentionPolicy parameter affect how you can r
 
 RetentionPolicy.SOURCE – makes the annotation to be discarded by the compiler but annotation processors can read them
 
-RetentionPolicy.CLASS – indicates that the annotation is added to the class file but not accessible through reflection
+RetentionPolicy.CLASS – indicates that the annotation is added to the class file(.class) but not accessible through reflection
 
 RetentionPolicy.RUNTIME –Annotations are recorded in the class file by the compiler and retained by the JVM at runtime so that they can be read reflectively
 
@@ -362,8 +354,6 @@ Description description
 System.out.println(description.value());
 ```
 An annotation processor can work with RetentionPolicy.SOURCE
-
-RetentionPolicy.CLASS is usable when you're writing a Java bytecode parser.
 
 Q10. Will the Following Code Compile?
 ```
@@ -392,7 +382,8 @@ Class class is used to describe the meta information inside a class. When a clas
 
 Every class or object can call getClass() method or .class field to get the instance of the Class class.
 
-Reflection gives us information about the class to which an object belongs and also the methods of that class which can be executed by using the object. Through reflection we can invoke methods at runtime irrespective of the access specifier used with them.
+
+Reflection is an API which is used to examine or modify the behavior of methods, classes, interfaces at runtime. Reflection gives us information about the class. This is a class manipulatior.
 
 Combine with annotations, using reflection api can achieve lots of framework jobs. 
 
@@ -400,8 +391,8 @@ Combine with annotations, using reflection api can achieve lots of framework job
 ### Generics
 Generics mean parameterized types. The idea is to allow type to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
 
-Q2. How Generics works in Java ? What is type erasure ?\
-This is one of the better interview question in Generics. Generics is implemented using Type erasure, the compiler erases all type related information during compile time and no type related information is available during runtime. for example List<String> is represented by only List at runtime. 
+Q2. How Generics works in Java ? What is type erasure ?
+Generics is implemented using Type erasure, the compiler erases all type related information during compile time and no type related information is available during runtime. for example List<String> is represented by only List at runtime. 
 
 Q3. What Are Some Advantages of Using Generic Types?
 One advantage of using generics is avoiding casts and provide type safety(compile type check), because we change the runtime exception to be a checked exception.
@@ -410,9 +401,6 @@ the other advantage is to avoid code duplication. Without generics, we have to c
 
 Q9. What Is a Wildcard Type?
 A wildcard type represents an unknown type.
-
-### reflection API 
-Reflection is an API which is used to examine or modify the behavior of methods, classes, interfaces at runtime. Reflection gives us information about the class. This is a class manipulatior.
 
 ### Exception
 Larger scope exception should put in the later place.
@@ -477,7 +465,7 @@ When we say Stream is lazy, we mean that most of the methods are defined on Java
 
 They only work when you call a terminal method on the Stream and finish as soon as they find the data they are looking for rather than scanning through the whole set of data.
  
- ### Optional
+### Optional
 Use optional to avoid NullPointerException.
 ```
 Optional<object> optional1 = Optional.empty()
@@ -505,7 +493,7 @@ One should "depend upon abstractions, [not] concretions."
 Java Mission Control is the recommended one by Oracle. 
 
 ### Other Java
- .class is not compulsory to be the same as .java
+.class filename is not compulsory to be the same as .java
  ```
  /*
  multiple comment 
@@ -539,20 +527,33 @@ Builder is to simplify the creation of the obejct if there are too many attribut
  ### Q1:Process Vs Thread
 A process is the execution of a program.
 
-Thread is an execution unit that is part of a process. A process can have multiple threads, all executing at the same time. 
+Thread is part of a process. A process can have multiple threads, all executing at the same time. 
 
 The typical difference is that threads (of the same process) share memory space whileas processes are mostly isolated, they have their own memory space.
 
 #### Q2: What is a thread pool?
-A thread pool manages the pool of worker threads, it contains a queue that keeps tasks waiting to get executed.
-
-A thread pool manages the collection of Runnable threads and worker threads execute Runnable from the queue.
+A thread pool manages the pool of worker threads, it contains a BlockingQueue that keeps tasks waiting to get executed.
 
 java.util.concurrent.Executors provide implementation of java.util.concurrent.Executor interface to create the thread pool in java. 
-Three types of Thread pool:
-1. single thread pool
-2. Fixed thread pool
-3. Cached THread pool
+ 
+#### types :
+1.	single thread pool
+2.	Fixed thread pool(: A thread pool with a fixed number of threads. 
+3.	Cached THread pool (A thread pool that creates as many threads it needs to execute the task in parrallel. )
+4.	Scheduled Thread Pool : A thread pool made to schedule future task. 
+5.	Single Thread Scheduled Pool : A thread pool with only one thread to schedule future task. 
+
+#### How to define it in the internally
+They are many thread and a BlockingQueue in the thread pool, the thread pool have all the Tasks. When the threads are idle, it will pick up the tasks from the blocking queue
+
+#### Why do we use thread pool, does it make the performance better
+A thread pool increase performance by reducing the number of threads needed and managing their lifecycle. Essentially, threads are kept in the thread pool until they're needed, after which they execute the task and return the pool to be reused later.
+
+#### How to create space internally thread pool 内部如何开辟空间, what the disadvantages.
+   ExecutorService.  setCorePoolSize method will change the core pool size
+
+#### Memory leekage.
+A Memory Leak is a situation when there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory and, thus they are unnecessarily maintained.
 
 #### Q3: During a thread's lifetime, what states can it have?
  New(haven't call start()), Runnable(it is executing in JVM), waiting(wait for notify()), time_waiting(wait for specific time)/Blocked(wait for monitor lock) and Terminated.
@@ -564,7 +565,7 @@ A race condition occurs when multiple concurrent threads race to be the first to
 Synchronization forces threads to run one at a time to prevent a race condition or multiple threads trying to perform the same task.
 
 #### Q6: synchronized block?
-A synchronized block allows you to designate a particular portion of a method as synchronized. That is, only a single thread will be allowed to run until it completes.
+only a single thread will be allowed to run the code block until it completes.
 
 A lock machanism to make code to be executed just in one thread at the same time.
 
@@ -593,8 +594,7 @@ Threads are blocked indefinately waiting to enter a synchronized bloc. Thread st
 nce a thread has been executed, it is considered dead. You cannot restart a dead thread.
 
 #### Q15: Can you describe a deadlock situation?
-
-Example: "A deadlock situation is where multiple threads are waiting on each other to release CPU resources so they can run. This can happen when, for example, a single thread has exclusive priority but needs resources from a waiting thread, or all the threads are depending on one another to release needed resources."
+A deadlock situation is where multiple threads are waiting on each other to release CPU resources so they can run.
 
 #### Q16: What happens when a livelock occurs?
 A livelock is similar to a deadlock situation, except with a livelock, the state of the threads change without ever making progress. For example, if all the threads are caught in infinite loops.
@@ -696,17 +696,13 @@ concurrent parkage
 ### What are the types of I / O streams?
 ByteStream(8 bits) and CharacterStream(16 bits).
 
-ByteStream are used for not text or not english. The base class InputStream represents classes that receive data from various sources. The class OutputStream is an abstract class that defines stream byte output. 
-
 We can simplify the stream code with try with resources.
-
-Character streams have two main abstract classes, Reader and Writer , which control the flow of Unicode characters. The Reader class is an abstract class that defines character streaming input. The Writer class is an abstract class that defines character stream output. In case of errors, all class methods throw an IOException.
-
+ 
 ### When to use Character Stream over Byte Stream? 
 characters are stored using Unicode conventions. Character stream is useful when we want to process text files. These text files can be processed character by character. A character size is typically 16 bits.
 
 #### When to use Byte Stream over Character Stream? 
-Byte oriented reads byte by byte. A byte stream is suitable for processing raw data like binary files.
+A byte stream is suitable for processing raw data like binary files.
 
 #### The IO is really expensive to use so how can we reduce the number of interaction between software and hardware
 load all of them ot memory at one time, use buffer
@@ -714,7 +710,7 @@ load all of them ot memory at one time, use buffer
 #### flush()
 Flushes the output stream and forces any buffered output bytes to be written out.
 
-#### It's not serialization
+#### IO and serialization
 Serialization uses ObjectInputStream/ObjectOutputStream
 
 #### transfer API 

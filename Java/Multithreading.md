@@ -18,7 +18,7 @@ Three types of Thread pool:
 3. Cached THread pool
 
 #### Q3: During a thread's lifetime, what states can it have?
-here are five states a thread can have: New, Runnable, Running, time_waiting/Blocked and Terminated.
+ New(haven't call start()), Runnable(it is executing in JVM), waiting(wait for notify()), time_waiting(wait for specific time)/Blocked(wait for monitor lock) and Terminated.
 
 #### Q4: What is a race condition? (definition + explanation + solution)
 A race condition occurs when multiple concurrent threads race to be the first to run. If the winner was not the one that was supposed to run first, the code may exhibit unexpected behavior. The problem can be resolved with synchronization.

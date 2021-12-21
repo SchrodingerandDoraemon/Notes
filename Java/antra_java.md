@@ -295,6 +295,7 @@ Q: Can Enum implement an interface in Java?
 A: Yes, Enum can implement an interface in Java. Since enum is a type, similar to class and interface, it can implement an interface. This gives a lot of flexibility to use Enum as a specialized implementation in some cases. You can further see here an example of Enum implementing an interface in Java.
 
 ### @Retention and Annotation
+annotation helps to change the runtime exception to be compiler time exception
 @inherited is a type of meta-annotation used to annotate custom annotations so that the subclass can inherit those custom annotations. 
 
 By default, Java annotations are not shown in the documentation created using the Javadoc tool. To ensure that our custom annotations are shown in the documentation, we use @Documented annotation to annotate our custom annotations. @Documented is a meta-annotation (an annotation applied to other annotations)
@@ -409,7 +410,10 @@ the other advantage is to avoid code duplication. Without generics, we have to c
 
 Q9. What Is a Wildcard Type?
 A wildcard type represents an unknown type.
- 
+
+### reflection API 
+Reflection is an API which is used to examine or modify the behavior of methods, classes, interfaces at runtime. Reflection gives us information about the class. This is a class manipulatior.
+
 ### Exception
 Larger scope exception should put in the later place.
  
@@ -544,8 +548,7 @@ A thread pool manages the pool of worker threads, it contains a queue that keeps
 
 A thread pool manages the collection of Runnable threads and worker threads execute Runnable from the queue.
 
-java.util.concurrent.Executors provide implementation of java.util.concurrent.Executor interface to create the thread pool in java. Thread Pool Example program shows how to create and use Thread Pool in java.
-
+java.util.concurrent.Executors provide implementation of java.util.concurrent.Executor interface to create the thread pool in java. 
 Three types of Thread pool:
 1. single thread pool
 2. Fixed thread pool
@@ -612,6 +615,12 @@ You can achieve thread safety through several techniques, including synchronizat
 Synchronous programming is when a single thread is assigned a single task. Asynchronous programming is when a single task is shared between multiple threads.
 
 ### Atomic 
+use case of volatile: flags(boolean)
+atomicInteger: counter
+AtomicInteger: caches
+ 
+compound operator means combined assignment operat
+
 Atomic operations are performed in a single unit of task without interference from other operations. '
 
 AtomicInteger

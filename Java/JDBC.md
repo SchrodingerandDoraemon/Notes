@@ -1,11 +1,11 @@
 ### Connect to JDBC 7 steps:
-1. import the package
-2. load and register the driver
-3.  establish the connection
-4.  create the statement
-5.  execute the query
-6.  process result
-7.  close 
+1.	Import the package
+2.	Load and register the driver
+3.	Allocate a connection object for connecting to the database
+4.	create a statement object, based on the connection
+5.	write sql query, execute query
+6.	process the query result
+7.	close the statement and connection object to free up the resources(use try with resource in step 3 and 4 to auto close(AutoCloseable interface))
 
 #### statement
 The JDBC Statement, CallableStatement, and PreparedStatement interfaces define the methods and properties that enable you to send SQL or PL/SQL commands and receive data from your database. 

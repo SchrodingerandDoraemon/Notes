@@ -13,3 +13,12 @@ Hibernate implement the JPA specification.
 
 ### Hibernate config
 The dialect specifies the type of database used in hibernate so that hibernate generate appropriate type of SQL statements.
+
+### Session factory
+
+### Entity
+
+
+## Fetch type
+Lazy loading
+Eager Loading

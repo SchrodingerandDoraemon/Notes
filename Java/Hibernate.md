@@ -22,3 +22,40 @@ The dialect specifies the type of database used in hibernate so that hibernate g
 ## Fetch type
 Lazy loading
 Eager Loading
+
+## ExceptionInInitializerError
+The ExceptionInInitializerError indicates that an unexpected exception has occurred in a static initializer(Static Variable, Static Initializer Block)
+
+## Blanks spaces are restricted in the naming convention of the database object's name and column name of the table
+
+## @GeneratedValue
+ Generated Identifiers
+
+If we want to automatically generate the primary key value, we can add the @GeneratedValue annotation.
+
+This can use four generation types: AUTO, IDENTITY, SEQUENCE and TABLE.
+
+If we don't explicitly specify a value, the generation type defaults to AUTO.
+
+## hibernate.cfg.xml
+If you are using Maven to build your project, place the 'hibernate.cfg.xml' file under 'src/main/resources'
+
+### Error:
+```
+Caused by: javax.xml.bind.UnmarshalException
+ - with linked exception:
+[javax.xml.stream.XMLStreamException: ParseError at [row,col]:[15,44]
+Message: The value of attribute "class" associated with an element type "mapping" must not contain the '<' character.]
+```
+Could be caused by syntax problems in your hibernate.cfg.xml file.
+
+'''
+WARN: HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+```
+In Hibernate.cfg.xml the <!DOCTYPE hibernate-configuration PUBLIC replace the former link with the later link
+
+```
+could not find the table
+```
+The "hibernate.dialect" org.hibernate.dialect.MySQL8Dialect must match the verison of database. For example, the database is MySQL 8.0.27, use MySQL8Dialect
+ 

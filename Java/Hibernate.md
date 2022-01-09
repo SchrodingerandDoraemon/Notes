@@ -59,3 +59,36 @@ could not find the table
 ```
 The "hibernate.dialect" org.hibernate.dialect.MySQL8Dialect must match the verison of database. For example, the database is MySQL 8.0.27, use MySQL8Dialect
  
+ 
+ 
+## Cache
+First level cache (also session level cache)
+Second level cache (Also session level cache)
+
+EhCache
+OSCache
+
+## JDBC vs ORM
+JDBC
+Pros:
+1. Small scale project it is recommended to go with JDBC
+2. JDBC provides better performance with large amounts of data
+3. Small application
+
+Cons:
+1. JDBC is not easy for large projects beacause it requires a lot setup.
+2. query language is dependent on database
+3. Have to take care of transaction manually
+4. manually close th connection
+
+ORM
+Pros:
+1. no need to deal with sql queries
+2. Switching database is easier
+3. support cache
+
+Cons:
+1. slower than JDBC
+
+
+

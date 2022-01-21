@@ -18,7 +18,11 @@ Core parts: IOC and Aop(Aspect-oriented programming)
 
 Aop: It does so by adding additional behavior to existing code (an advice) without modifying the code itself
 
+### IOC and Dependency injection
 
+
+### Default scope of Spring bean is singleton          
+prototype, request, session, global session
 
 
 

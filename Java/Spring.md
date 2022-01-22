@@ -89,6 +89,24 @@ The method can not accept any arguments. The method should be no-arg.
 
 
 
+# Spring MVC
+Front controller known as DispatcherServlet
+
+<img width="1347" alt="image" src="https://user-images.githubusercontent.com/35554521/150625092-a04bdf93-82f4-483a-afe9-be542250b025.png">
+
+<img width="1313" alt="image" src="https://user-images.githubusercontent.com/35554521/150625209-08831981-f9c4-44b2-8887-d6eaf048ebae.png">
+
+<img width="1306" alt="image" src="https://user-images.githubusercontent.com/35554521/150625215-5f4f5483-6ed7-4dcf-bd82-ffe524388ffa.png">
+
+<img width="1317" alt="image" src="https://user-images.githubusercontent.com/35554521/150625240-7f1e7dbb-7a55-4c7c-9520-7f6ecec099bb.png">
+
+
+
+
+
+
+
+
 
 
 

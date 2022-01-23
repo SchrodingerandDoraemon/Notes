@@ -91,4 +91,35 @@ Cons:
 1. slower than JDBC
 
 
+FAQ: Why we are using JPA Annotation instead of Hibernate?
+FAQ: Why we are using JPA Annotation instead of Hibernate ?
+
+
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/35554521/150661079-4140a699-e181-4ed7-a8fe-8544d22b6ab1.png">
+
+
+close the sessionFactory rather than close the session 
+
+
+## Cascade
+means apply the same operation to related entities.
+
+
+
+close the sessionFactory rather than close the session #
+close the sessionFactory rather than close the session 
+
+
+QUESTION:
+1. Why we are using JPA Annotation instead of Hibernate ?
+
+For example, why we are not using this org.hibernate.annotations.Entity?
+
+ANSWER:
+JPA is a standard specification. Hibernate is an implementation of the JPA specification.
+
+Hibernate implements all of the JPA annotations.
+
+The Hibernate team recommends the use of JPA annotations as a best practice.
+
 

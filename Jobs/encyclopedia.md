@@ -255,6 +255,87 @@ How to keep requests in order during multithreading scenario in the web applicat
 
 3.	monolithic vs microservice!
 
+### BeanFactory v.s. ApplicationContext
+BeanFactory is the most basic version of IOC containers, and the ApplicationContext extends the features of BeanFactory.
+- BeanFactory loads beans on-demand(lazy loading), while ApplicationContext loads all beans at startup(eager loading)
+- ApplicationContext is more suitable for enterprise applications. For instance, it provides messaging (i18n or internationalization) functionality, event publication functionality, annotation-based dependency injection, and easy integration with Spring AOP features.
+- The ApplicationContext automatically registers BeanFactoryPostProcessor and BeanPostProcessor at startup. On the other hand, the BeanFactory does not register these interfaces automatically.
+- Therefore, it's generally recommended to use the ApplicationContext, and we should use BeanFactory only when memory consumption is critical.
+
+
+#### when to use eager loading
+1. Use Eager Loading when the relations are not too much. Thus, Eager Loading is a good practice to reduce further queries on the Server.
+2. Use Eager Loading when you are sure that you will be using related entities with the main entity everywhere.
+3. when there is a high ping between your web and sql servers
+
+#### When to use lazy loading
+1. Use Lazy Loading when you are using one-to-many collections.
+2. Use Lazy Loading when you are sure that you are not using related entities instantly.
+
+### What is a bean in Spring?
+A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+
+#### How to access beans in spring?
+applicationContext.getBean("beanname")
+
+### What is dependency injection?
+Dependency injection means giving an object its instance variables. 
+Dependency injection is basically providing the objects that an object needs (its dependencies) instead of having it construct them itself.
+
+Dependencies can be injected into objects by many means (such as constructor injection or setter injection). One can even use specialized dependency injection frameworks (e.g. Spring) to do that.
+
+### Which way is the best way to do bean injection?
+A class that takes a required dependency as a constructor argument can only be instantiated if that argument is provided (you should have a guard clause to make sure the argument is not null) (or use a non-nullable type in Kotlin). A constructor therefore enforces the dependency requirement whether or not you're using Spring, making it container-agnostic.
+
+If you use setter injection, the setter may or may not be called, so the instance may never be provided with its dependency. The only way to force the setter to be called is using @Required or @Autowired , which is specific to Spring and is therefore not container-agnostic.
+
+So to keep your code independent of Spring, use constructor arguments for injection. This applies to tests; you'll have an easier time instantiating and testing the class in a normal unit test, without needing to configure an application context or the complexity that comes along with setting up an integration test.
+
+Update: Spring 4.3 will perform implicit injection in single-constructor scenarios, making your code more independent of Spring by potentially not requiring an @Autowired annotation at all.
+
+
+#### Spring boot bean scope
+singleton scope
+prototype scope
+request scope
+session scope
+application scope
+websocket scope
+Custom thread scope
+
+### AOP for logging
+
+
+Have you used Spring data JPA,	How to mask data from Spring data JPA query results? 
+
+### Spring data JPA v.s. Hibernate!
+
+
+
+
+Spring Security features in previous project
+
+
+10.	What does it mean to authenticate the RESTful request?!
+
+
+
+
+
+#### How do you handle Restful API security?
+
+#### How to improve the performance of a slow restful API?!
+1. Use caching. caching data that is frequently used and same response.
+2. Compressed Data. it is better to send compressed data as response. At the client end, all you need to do is to use Accept-Encoding header as gzip
+3. Enable Partial Responses. do it when design
+4. PATCH vs PUT. PUT would require the whole data to be sent to the REST server. If the requirement at client end is to update only a small subset of the REST resource, it is advisable to use a PATCH command so that network bandwidth is not eaten up by tons of requests reaching the server.
+
+#### How do you test your APIs?
+
+
+
+
+
 
 
 aws services you used before!w

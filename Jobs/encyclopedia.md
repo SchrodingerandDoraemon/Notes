@@ -324,11 +324,30 @@ Spring Security features in previous project
 
 #### How do you handle Restful API security?
 
+#### How to achieve security features in the project?
+
+
 #### How to improve the performance of a slow restful API?!
 1. Use caching. caching data that is frequently used and same response.
 2. Compressed Data. it is better to send compressed data as response. At the client end, all you need to do is to use Accept-Encoding header as gzip
 3. Enable Partial Responses. do it when design
 4. PATCH vs PUT. PUT would require the whole data to be sent to the REST server. If the requirement at client end is to update only a small subset of the REST resource, it is advisable to use a PATCH command so that network bandwidth is not eaten up by tons of requests reaching the server.
+
+#### Have you used Spring data JPA, 7.	How to mask data from Spring data JPA query results?
+
+#### Spring data JPA v.s. Hibernate
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 #### How do you test your APIs?
 

@@ -172,7 +172,7 @@ So, in summary, Java considers something a singleton if it cannot create more th
 
 #### how do you deploy your microservice!
 
-what is DAO layer
+### what is DAO layer
 DAO is Data Access Object which is used within Persistence Layer to make Database Transaction. For example , the class holding the Database connection and CRUD methods.
 The persistence layer of enterprise applications serves as an intermediary between the business functions of the application and the data it stores in a relational database. This function of the persistence layer is also known as object-relational mapping because it maps Java objects to relational data.
 
@@ -318,9 +318,28 @@ Spring Security features in previous project
 
 10.	What does it mean to authenticate the RESTful request?!
 
+how does tomcat handle request
 
 
+### how does springMVC handle request
+will try to explain the "flow" of a request in a Spring Web MVC application.
 
+When sending a request to your application the following happens:
+
+The request arrives at your server (e.g. Tomcat). Depending on the context path in the url the server decides to which application the request belongs.
+Depending on the url and the servlet mapping in the web.xml file of your application the server knows which servlet should handle the request.
+The request is passed to the servlet filter chain which can modify or reject requests
+The servlet takes control over the request. In case of your Spring application the spring Dispatcherservlet receives the request. Now Spring kicks in
+The request is processed by mvc intercepters preHandle methods
+The request is mapped to a controller based on the url. The corresponding controller method will be called.
+Your controller is processing the request. Many different responses can be returned in controllers (jsp, pdf, json, redirects, etc.). For now i assume you want to render a simple jsp view. Result of the controller are two things: a model and a view. The model is a map that contains the data you want to access later in your view. The view at this stage is most of the time a simple string containing a view name.
+Registered springs mvc interceptors can kick in again using the postHandle method (e.g. for modifying the model)
+The 'view' result of your controller is resolved to a real View using a ViewResolver. Depending on the ViewResolver the result can be jsp page, a tiles view, a thymeleaf template or many other 'Views'. In your case the ViewResolver resolves a view name (e.g. 'myPage') to a jsp file (e.g. /WEB-INF/jsp/myPage.jsp)
+The view is rendered using the model data returned by your controller
+The response with the rendered view will be passed to mvc interceptors again (afterCompletion method)
+The response leaves the dispatcher servlet. Here ends spring land.
+The response passes servlet filters again
+The response is send back to client
 
 #### How do you handle Restful API security?
 
@@ -341,11 +360,63 @@ Spring Security features in previous project
 
 
 
+### How to handle exceptions in the DAO layer?
+To achieve this, one way out is the define generic layer specific exceptions say PersistentException, ServiceException etc. These exception will wrap the actual layer specific exception.
+
+For example say if there is some error on database side (Constraint violation etc), wrap that in PersistentException and let service layer handle that (as to how to convey this to UI layer in a generic way)
+
+Now since the integration between service layer and DAO layer is contractual (interface based), the DAO layer is free to change the implementation to anything as long as it obeys the interface contract. So if you change the implementation which throws some new exceptions, those new exceptions can be wrapped in PersistentException and Service layer remains unaffected.
+
+### How to make sure operations in the DAO layer are transactional?
+Service layer may call different DAOs to perform DB operations. Lets assume a situation where you have 3 DAO operations in a service method. If your 1st DAO operation failed, other two may be still passed and you will end up with an inconsistent DB state. Annotating Service layer with @Transactional can save you from such situations.
+
+### Microservice architecture v.s. Service Oriented Architecture
+The main distinction between the two approaches comes down to scope. To put it simply, service-oriented architecture (SOA) has an enterprise scope, while the microservices architecture has an application scope.
+<img width="537" alt="Screen Shot 2022-02-01 at 6 06 40 PM" src="https://user-images.githubusercontent.com/35554521/152066641-ec029ab9-a87d-4634-85ff-5a500651b944.png">
+the two can potentially complement each other, rather than compete.
+
+other difference:
+- Synchronous calls: 
+The reusable services in SOA are available across the enterprise using predominantly synchronous protocols like RESTful APIs.
+
+However, within a microservice application, synchronous calls introduce real-time dependencies, resulting in a loss of resilience. These dependencies may also cause latency, which impacts performance. Within a microservices application, interaction patterns based on asynchronous communication are preferred, such as event sourcing, in which a publish/subscribe model is used to enable a microservices component to remain up to date on changes happening to the data in another component.
+
+- Data duplication:
+A clear aim of providing services in an SOA is for all applications to synchronously obtain and alter data directly at its primary source, which reduces the need to maintain complex data synchronization patterns.
+
+In microservices applications, ideally, each microservice has local access to all the data it needs to ensure its independence from other microservices — and indeed from other applications — even if this means some duplication of data in other systems. Of course, this duplication adds complexity, so it must be balanced against the gains in agility and performance, but this is accepted as a reality of microservices design.
+
+- Communication: In a microservices architecture, each service is developed independently, with its own communication protocol. With SOA, each service must share a common communication mechanism called an enterprise service bus (ESB). SOA manages and coordinates the services it delivers through the ESB. However, the ESB can become a single point of failure for the whole enterprise, and if a single service slows down, the entire system can be affected.
+-Interoperability: In the interest of keeping things simple, microservices use lightweight messaging protocols like HTTP/REST (Representational State Transfers) and JMS (Java Messaging Service). SOAs are more open to heterogeneous messaging protocols such as SOAP (Simple Object Access Protocol), AMQP (Advanced Messaging Queuing Protocol) and MSMQ (Microsoft Messaging Queuing).
+- Service granularity: Microservices architectures are made up of highly specialized services, each of which is designed to do one thing very well. The services that make up SOAs, on the other hand, can range from small, specialized services to enterprise-wide services.
+- Speed: By leveraging the advantages of sharing a common architecture, SOAs simplify development and troubleshooting. However, this also tends to make SOAs operate more slowly than microservices architectures, which minimize sharing in favor of duplication.
+- Governance: The nature of SOA, involving shared resources, enable the implementation of common data governance standards across all services. The independent nature of microservices does not enable consistent data governance. This provides greater flexibility for each service, which can encourage greater collaboration across the organization.
+- Storage: SOA and microservices also differ in terms of how storage resources are allocated. SOA architecture typically includes a single data storage layer shared by all services within a given application, whereas microservices will dedicate a server or database for data storage for any service that needs it.
 
 
 
 
 
+### diff webflux and spring mvc
+
+
+
+if you need to read data from cookie how do you write in spring
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.	Microservice architecture v.s. Service Oriented Architecture
+7.	What is the advantage for microservice? 
 
 
 

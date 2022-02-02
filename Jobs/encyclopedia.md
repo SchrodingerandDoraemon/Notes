@@ -95,6 +95,13 @@ Cascade delete
 IOC
 The approach of outsourcing the creation and management of objects to the spring.  Normally, when we need a new object, we have to create new one. But in spring, there is concept called container, which will create the object for us, so we can directly use them. Factory design pattern. Loosely coupled, It manages an object's life-cycle and configuration. 
 
+### What is the benefit of using IoC?
+- Minimizes the amount of code in your application. With IOC containers you do not care about how services are created and how you get references to the ones you need. You can also easily add additional services by adding a new constructor or a setter method with little or no extra configuration.
+- Make your application more testable by not requiring any singletons or JNDI lookup mechanisms in your unit test cases. IOC containers make unit testing and switching implementations very easy by manually allowing you to inject your own objects into the object under test.
+- Loose coupling is promoted with minimal effort and least intrusive mechanism. The factory design pattern is more intrusive because components or services need to be requested explicitly whereas in IOC the dependency is injected into requesting piece of code. Also some containers promote the design to interfaces not to implementations design concept by encouraging managed objects to implement a well-defined service interface of your own.
+- IOC containers support eager instantiation and lazy loading of services. Containers also provide support for instantiation of managed objects, cyclical dependencies, life cycles management, and dependency resolution between managed objects etc.
+
+
 AOP
 It does so by adding additional function (an advice) to existing code without modifying the original code. And the new feature we just added can be used in other place as well, so it also reduced the duplicated code.
 Loosely coupled. 
@@ -221,7 +228,7 @@ Dynamic content is content that changes based on factors specific to the user su
 
 3.	Spring Boot experience!
 
-
+#### When is tomcat booted when we deploy spring boot application?
 
 20.	spring security experience!
 
@@ -230,6 +237,7 @@ Dynamic content is content that changes based on factors specific to the user su
 15.	Spring Batch Experience ![image](https://user-images.githubusercontent.com/35554521/151684868-d2d45faf-ae44-4186-a12a-0f44d0f15c04.png)
 
 19.	How will you implement a singleton object in java?
+
 
 
 5.	What tool did you use to deploy your web application? 
@@ -461,6 +469,15 @@ HandlerIntercepors, on the other hand, intercepts requests between the Dispatche
 
 
 aws services you used before!w
+
+### how to change server of spring boot
+You will need to update pom.xml, add the dependency for new one. Also, you will need to exclude orla
+### Actuator
+Actuator brings production-ready features to our application. Monitoring our app, gathering metrics, understanding traffic, or the state of our database become trivial with this dependency.
+
+Actuator is mainly used to expose operational information about the running application — health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it.
+
+
 
 
 # AWS

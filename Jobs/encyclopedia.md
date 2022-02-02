@@ -422,10 +422,42 @@ if you need to read data from cookie how do you write in spring
 
 #### How do you test your APIs?
 
+@RequestMapping: Simply put, the annotation is used to map web requests to Spring Controller methods
+
+@PathVariable annotation can be used to handle template variables in the request URI mapping, and set them as method parameters.
+
+
+
+### how to handle cookie in Spring
+1. create a cookie: We will use the class ResponseCookie for the cookie and ResponseEntity for setting the cookie in the response. We can add all the properties that we need and use the method build() of the builder to create the ResponseCookie.After creating the cookie, we add it to the header of the response
+2. Reading a Cookie with @CookieValue to read any cookie by specifying the name without needing to iterate over all the cookies fetched from the request.
+3. Deleting a Cookie: To delete a cookie, we will need to create the cookie with the same name and maxAge to 0 and set it to the response header
+
+### if you need to update cache, what do you need to do!
+@CachePut annotation, we can update the content of the cache without interfering with the method execution. 
+
+
+### What is the difference between Spring interceptor(interface) and filter?
+Filters are part of the webserver and not the Spring framework. For incoming requests, we can use filters to manipulate and even block requests from reaching any servlet. Vice versa, we can also block responses from reaching the client.
+
+HandlerInterceptors are part of the Spring MVC framework and sit between the DispatcherServlet and our Controllers. We can intercept requests before they reach our controllers, and before and after the view is rendered.
+<img width="744" alt="Screen Shot 2022-02-01 at 11 54 08 PM" src="https://user-images.githubusercontent.com/35554521/152095194-73b10a2a-fd7f-4f89-ae9a-62324173b874.png">
+Filters intercept requests before they reach the DispatcherServlet, making them ideal for coarse-grained tasks such as:
+- Authentication
+- Logging and auditing
+- Image and data compression
+- Any functionality we want to be decoupled from Spring MVC
+
+HandlerIntercepors, on the other hand, intercepts requests between the DispatcherServlet and our Controllers. This is done within the Spring MVC framework, providing access to the Handler and ModelAndView objects. This reduces duplication and allows for more fine-grained functionality such as:
+- Handling cross-cutting concerns such as application logging
+- Detailed authorization checks
+- Manipulating the Spring context or model
 
 
 
 
+12.	if you have other environment how do you connect your local environment to remote cache
+13.	how to switch configuration in your spring boot application
 
 
 aws services you used before!w

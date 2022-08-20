@@ -15,8 +15,8 @@ final variable: no change
 final method: no override
 
 ### Deep copy VS shallow copy
-shallow copy only copy the references of those objects. One object, two reference.
-Deep copy means a new object will be created, and all the values of original object will be copied to the new object. Two object, two reference. We have to override the clone() method to use deep copy.
+shallow copy only copy the references of those objects. One object, two reference variable.
+Deep copy means a new object will be created, and all the values of original object will be copied to the new object. Two object, two reference variable. We have to override the clone() method to use deep copy.
  
 ### ConcurrentHashMap
 ConcurrentHashMap class is thread-safe. It works by dividing complete hashtable array into segments or portions and allowing parallel access to those segments. The locking is at a much finer granularity at a hashmap bucket level(all methods are synchronized on Hashtable instances using the synchronized keyword). ConcurrentHashMap does not allow NULL values, so the key can not be null in ConcurrentHashMap.

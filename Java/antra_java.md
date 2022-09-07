@@ -1,5 +1,5 @@
 ### Protected vs public
-Protected can be declared for Variables, methods, and constructor, it makes can be accessed only by the subclasses in other package or any class within the package. The protected access modifier cannot be applied to class and interfaces.
+Protected can be declared for Variables, methods, and constructor(but not class neither interface), it makes can be accessed only by the subclasses(whether this's in package or outside of package).
 
 The public keyword is an access modifier used for classes, attributes, methods and constructors, making them accessible by any other class
 
@@ -9,7 +9,7 @@ class can only be default class or public class
 
 Interface are by default public.
 
-### final in local variable
+### final
 final class: can not extent the class
 final variable: no change
 final method: no override
@@ -24,7 +24,7 @@ ConcurrentHashMap class is thread-safe. It works by dividing complete hashtable 
 If a thread-safe highly-concurrent implementation is desired, then it is recommended to use ConcurrentHashMap in place of Hashtable.
 
 ### Synchronized HashMap
-It locks the whole map.performance of ConcurrentHashMap is relatively better than the Synchronized Map. Synchronized HashMap allows inserting null as a key. ConcuurentHashMap doesn’t allow inserting null as a key or value.
+It locks the whole map. Performance of ConcurrentHashMap is relatively better than the Synchronized HashMap. Synchronized HashMap allows inserting null as a key. ConcuurentHashMap doesn’t allow inserting null as a key or value.
 
 ### referency data type
 Reference datatypes in java are those which contains reference/address of dynamically created objects. These are not predefined like primitive data types.
@@ -48,7 +48,7 @@ Once we create a variable of these types (i.e. when we create an array or object
 ### static method and default method introduced in Java 8
 They are used to create a common feature/action for the class implantate them. 
 
-Static method in interface means we can directly use the method by use the interface.method
+Static method in interface means we can directly use the method by use the interfaceName.methodName or className.methodName.
 
 default methods which allow the interfaces to have methods with implementation.
 
@@ -65,11 +65,11 @@ two point to memorize:
 An immutable class is simply a class whose instances cannot be modified. 
 e.g. String, Integer...
 
-### how to customize our own immutable class
+### how to customize our own immutable class (The memory trick to follow the order of writing a class)
 1. Declare the class as final so it can’t be extended.
 2. Make all fields private and final so that direct access is not allowed.
-3. Don’t provide setter methods for variables.
-4. Initialize all the fields via a constructor performing deep copy
+3. Initialize all the fields via a constructor performing deep copy
+4. Don’t provide setter methods for variables.
 5. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
 
 ### Memory area (it is the logical way)
@@ -91,7 +91,7 @@ POM
 POM (Project Object Model) is the fundamental unit of work. It is an XML file which holds the information about the project and configuration details used to build a project by Maven.
 
 Explain what is Maven artifact?
-Usually an artifact is a JAR file which gets arrayed to a Maven repository. One or more artifacts a maven build produces such as compiled JAR and a sources JAR.
+In Maven terminology, an artifact is an output generated after a Maven project build. It can be, for example, a jar, war, or any other executable file.
 
 Explain what is Maven Repository? What are their types?
 
@@ -99,19 +99,19 @@ A Maven repository is a location where all the project jars, library jars, plugi
 
 ### JDK/JRE/JVM
 the relation of subset
-JDK: JRE + dev tools
-JRE = JVM + java SE stardard librart
 JVM = stands for Java Virtual Machine, is a virtual machine that understands and runs java bytecodes. JVM has the memory structure is the explicit difference from normal VM.
+JRE = JVM + java SE stardard librart
+JDK: JRE + dev tools
 
 ### Garabage collector
 #### How does it internally works?
 Minor GC is fot the young generation,counter to count the life cycle, one the life cycle pass the max tenuring threshold, the object will be move the old generations. Major GC for the old generation.
 
 #### Serial collector:
-a basic collector runs in sinle thread.
+a basic collector runs in single thread.
 
 #### concurent collector(CMS):
-A thread that performs GC along tiwth application execution as the application runs. it doesn't wait for the old geration to be full to begin the major collections. It stops the world only during mark/remark
+A thread that performs GC along with application execution as the application runs. it doesn't wait for the old gernation to be full to begin the major collections. It stops the world only during mark/remark.  The newer garbage-first collector (G1) replace CMS since JAVA 9.
 
 #### parallel collector
 This is the default GC for Java 8
@@ -125,6 +125,8 @@ Throughput is the amount of a product or service that a company can produce and 
 
 #### ZGC is a concurrent GC 
 
+#### java 11 use G1 GC
+
 ### Java hotspot
 HotSpot, also called Java HotSpot Virtual Machine, or HotSpot JVM, is an implementation of the JVM (Java Virtual Machine) Specification originallly developed by Sun Microsystems and now supported by Oracle Corporation.
 
@@ -135,7 +137,7 @@ implicit casting: coverting without losing data. e.g. int ---> double
 
 explicit casting: Coverting with losing data. 
 
-Down casting: form superclass to subclass  --- explicitly
+Down casting: form superclass to subclass  ---> explicitly
 
 Up casting: from subclass to a superclass ---> implicity
 
@@ -145,7 +147,7 @@ unboxing is the automatic convert object wrapper classes to their corresponding 
 
 ### Interface vs Abstract class (multi-inheritance+ final+ access modifier)
 1. Interface can do multi-inheritance.
-2. Final Variables: Variables declared in interface are by default final. An abstract class may contain non-final variables.
+2. Final Variables: Variables declared in interface are by default final and static. An abstract class may contain non-final variables.
 3. Accessibility of Data Members: Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
 
 ### class loader
@@ -165,14 +167,14 @@ in heap memory. Constant string pool stores literal string values.
 In the method area, all class level information like class name, immediate parent class name, methods and variables information etc. are stored, including static variables.
 
 ### static
-static method and static variable are in method area. method area are in the metaspce.
+static method and static variable are in method area. method area are in the metaspace.
 
 static method have to use static variable
 
 ### throw 
 two purpose:
-1. tell the programmar 
-2. used for custom exception
+1. let caller know that there is an error and he should handle it gracefully.
+2. used for custom exception. Exceptions that are specific to the business logic and workflow. These help the application users or the developers understand what the exact problem is.
 
 ### final, Finally, finally.
 The final keyword can be used with class method and variable. A final class cannot be inherited, a final method cannot be overridden and a final variable cannot be reassigned.

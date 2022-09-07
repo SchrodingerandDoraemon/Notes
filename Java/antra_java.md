@@ -176,15 +176,16 @@ two purpose:
 1. let caller know that there is an error and he should handle it gracefully.
 2. used for custom exception. Exceptions that are specific to the business logic and workflow. These help the application users or the developers understand what the exact problem is.
 
-### final, Finally, finally.
+### Error 
+stackoverflow is error
+
+### final, Finally, finalize.
 The final keyword can be used with class method and variable. A final class cannot be inherited, a final method cannot be overridden and a final variable cannot be reassigned.
 
 The finally,used in try-catch, whatever exception happened or not, the finally block will excuted. Using a finally block allows you to run any cleanup-type statements to realse to resource. System exit can interrupt the finally
 
 finalize() method is used to perform clean-up activity before the GC. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation. Remember it is not a reserved keyword. Once the finalize method completes immediately Garbage Collector destroy that object.
 
-### Error 
-stackoverflow is error
 
 ### thread
 Thread share method area and heap, but each thread have their own stack
